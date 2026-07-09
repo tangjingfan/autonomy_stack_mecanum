@@ -26,7 +26,7 @@
     <param name="twoWayDrive" value="true" />
     <param name="laserVoxelSize" value="0.05" />
     <param name="terrainVoxelSize" value="0.2" />
-    <param name="useTerrainAnalysis" value="true" />
+    <param name="useTerrainAnalysis" value="false" />
     <param name="checkObstacle" value="true" />
     <param name="checkRotObstacle" value="false" />
     <param name="adjacentRange" value="3.5" />
