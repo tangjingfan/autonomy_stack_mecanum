@@ -35,6 +35,14 @@ using namespace std;
 
 const double PI = 3.1415926;
 
+void replaceInstallPath(string& path)
+{
+  const size_t installPathPos = path.find("/install/");
+  if (installPathPos != string::npos) {
+    path.replace(installPathPos, 8, "/src/base_autonomy");
+  }
+}
+
 string metricFile;
 string trajFile;
 string pcdFile;
@@ -273,10 +281,10 @@ int main(int argc, char** argv)
   nh->get_parameter("savePcd", savePcd);
 
   // No direct replacement present for $(find pkg) in ROS2. Edit file path.
-  mapFile.replace(mapFile.find("/install/"), 8, "/src/base_autonomy");
-  metricFile.replace(metricFile.find("/install/"), 8, "/src/base_autonomy");
-  trajFile.replace(trajFile.find("/install/"), 8, "/src/base_autonomy");
-  pcdFile.replace(pcdFile.find("/install/"), 8, "/src/base_autonomy");
+  replaceInstallPath(mapFile);
+  replaceInstallPath(metricFile);
+  replaceInstallPath(trajFile);
+  replaceInstallPath(pcdFile);
 
   auto subOdometry = nh->create_subscription<nav_msgs::msg::Odometry>("/state_estimation", 5, odometryHandler);
 
@@ -300,9 +308,11 @@ int main(int argc, char** argv)
   exploredAreaDwzFilter.setLeafSize(exploredAreaVoxelSize, exploredAreaVoxelSize, exploredAreaVoxelSize);
   exploredVolumeDwzFilter.setLeafSize(exploredVolumeVoxelSize, exploredVolumeVoxelSize, exploredVolumeVoxelSize);
 
-  pcl::PLYReader ply_reader;
-  if (ply_reader.read(mapFile, *overallMapCloud) == -1) {
-    RCLCPP_INFO(nh->get_logger(), "Couldn't read pointcloud.ply file.");
+  if (!mapFile.empty()) {
+    pcl::PLYReader ply_reader;
+    if (ply_reader.read(mapFile, *overallMapCloud) == -1) {
+      RCLCPP_WARN(nh->get_logger(), "Couldn't read map file: %s", mapFile.c_str());
+    }
   }
 
   overallMapCloudDwz->clear();
