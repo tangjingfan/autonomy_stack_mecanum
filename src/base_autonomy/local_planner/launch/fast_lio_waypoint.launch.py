@@ -6,7 +6,7 @@ from launch.actions import DeclareLaunchArgument, GroupAction, IncludeLaunchDesc
 from launch.conditions import IfCondition
 from launch.launch_description_sources import FrontendLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration
-from launch_ros.actions import Node, SetRemap
+from launch_ros.actions import Node
 
 
 def generate_launch_description():
@@ -74,6 +74,19 @@ def generate_launch_description():
     }.items()
   )
 
+  start_fast_lio_topic_bridge = Node(
+    package='local_planner',
+    executable='fastLioTopicBridge',
+    name='fastLioTopicBridge',
+    output='screen',
+    parameters=[{
+      'input_odom_topic': fast_lio_odom_topic,
+      'input_cloud_topic': fast_lio_cloud_topic,
+      'output_odom_topic': '/state_estimation',
+      'output_cloud_topic': '/registered_scan',
+    }]
+  )
+
   start_joy = Node(
     package='joy',
     executable='joy_node',
@@ -88,8 +101,7 @@ def generate_launch_description():
   )
 
   waypoint_stack = GroupAction([
-    SetRemap(src='/state_estimation', dst=fast_lio_odom_topic),
-    SetRemap(src='/registered_scan', dst=fast_lio_cloud_topic),
+    start_fast_lio_topic_bridge,
     start_local_planner,
     start_terrain_analysis,
     start_terrain_analysis_ext,

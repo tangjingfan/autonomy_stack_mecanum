@@ -11,7 +11,7 @@ By default, the launch file expects FAST_LIO_GPU to publish:
 /cloud_registered
 ```
 
-The stack remaps those internally to:
+The stack republishes those into the original autonomy-stack topic names:
 
 ```bash
 /state_estimation

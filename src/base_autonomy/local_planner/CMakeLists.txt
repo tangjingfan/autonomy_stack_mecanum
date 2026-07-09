@@ -31,12 +31,15 @@ find_package(serial REQUIRED)
 
 add_executable(localPlanner src/localPlanner.cpp)
 add_executable(pathFollower src/pathFollower.cpp)
+add_executable(fastLioTopicBridge src/fastLioTopicBridge.cpp)
 ament_target_dependencies(localPlanner rclcpp std_msgs sensor_msgs nav_msgs geometry_msgs tf2 tf2_ros tf2_geometry_msgs message_filters pcl_ros pcl_conversions)
 ament_target_dependencies(pathFollower rclcpp std_msgs sensor_msgs nav_msgs geometry_msgs tf2 tf2_ros tf2_geometry_msgs message_filters pcl_ros pcl_conversions serial)
+ament_target_dependencies(fastLioTopicBridge rclcpp sensor_msgs nav_msgs)
 
 install(TARGETS
   localPlanner
   pathFollower
+  fastLioTopicBridge
   DESTINATION lib/${PROJECT_NAME})
 
 install(
