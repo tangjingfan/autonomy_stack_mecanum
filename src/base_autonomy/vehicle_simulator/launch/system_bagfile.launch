@@ -2,8 +2,8 @@ import os
 
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, TimerAction
-from launch.launch_description_sources import PythonLaunchDescriptionSource, FrontendLaunchDescriptionSource
+from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
+from launch.launch_description_sources import FrontendLaunchDescriptionSource
 from launch_ros.actions import Node
 from launch.substitutions import LaunchConfiguration 
 
@@ -59,12 +59,6 @@ def generate_launch_description():
     )
   )
 
-  start_arise_slam = IncludeLaunchDescription(
-    PythonLaunchDescriptionSource(os.path.join(
-      get_package_share_directory('arise_slam_mid360'), 'launch', 'arize_slam.launch.py')
-    )
-  )
-
   start_visualization_tools = IncludeLaunchDescription(
     FrontendLaunchDescriptionSource(os.path.join(
       get_package_share_directory('visualization_tools'), 'launch', 'visualization_tools.launch')
@@ -101,7 +95,6 @@ def generate_launch_description():
   ld.add_action(start_terrain_analysis)
   ld.add_action(start_terrain_analysis_ext)
   ld.add_action(start_sensor_scan_generation)
-  ld.add_action(start_arise_slam)
   ld.add_action(start_visualization_tools)
   ld.add_action(start_joy)
 

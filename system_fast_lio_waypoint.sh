@@ -2,7 +2,7 @@
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 
-cd $SCRIPT_DIR
+cd "$SCRIPT_DIR"
 source ./install/setup.bash
 ros2 launch local_planner fast_lio_waypoint.launch.py &
 sleep 1
