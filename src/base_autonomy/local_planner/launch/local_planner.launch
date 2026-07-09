@@ -10,6 +10,7 @@
   <arg name="autonomyMode" default="false"/>
   <arg name="autonomySpeed" default="0.875"/>
   <arg name="joyToSpeedDelay" default="2.0"/>
+  <arg name="useTerrainAnalysis" default="false"/>
   <arg name="goalX" default="0.0"/>
   <arg name="goalY" default="0.0"/>
 
@@ -26,7 +27,7 @@
     <param name="twoWayDrive" value="true" />
     <param name="laserVoxelSize" value="0.05" />
     <param name="terrainVoxelSize" value="0.2" />
-    <param name="useTerrainAnalysis" value="false" />
+    <param name="useTerrainAnalysis" value="$(var useTerrainAnalysis)" />
     <param name="checkObstacle" value="true" />
     <param name="checkRotObstacle" value="false" />
     <param name="adjacentRange" value="3.5" />

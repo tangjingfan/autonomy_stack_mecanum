@@ -19,6 +19,7 @@ def generate_launch_description():
   checkTerrainConn = LaunchConfiguration('checkTerrainConn')
   realRobot = LaunchConfiguration('realRobot')
   useJoy = LaunchConfiguration('useJoy')
+  useTerrainAnalysis = LaunchConfiguration('useTerrainAnalysis')
 
   declare_world_name = DeclareLaunchArgument('world_name', default_value='real_world', description='')
   declare_fast_lio_odom_topic = DeclareLaunchArgument('fast_lio_odom_topic', default_value='/Odometry', description='')
@@ -29,6 +30,7 @@ def generate_launch_description():
   declare_checkTerrainConn = DeclareLaunchArgument('checkTerrainConn', default_value='true', description='')
   declare_realRobot = DeclareLaunchArgument('realRobot', default_value='false', description='')
   declare_useJoy = DeclareLaunchArgument('useJoy', default_value='false', description='')
+  declare_useTerrainAnalysis = DeclareLaunchArgument('useTerrainAnalysis', default_value='false', description='')
 
   start_local_planner = IncludeLaunchDescription(
     FrontendLaunchDescriptionSource(os.path.join(
@@ -39,6 +41,7 @@ def generate_launch_description():
       'sensorOffsetX': sensorOffsetX,
       'sensorOffsetY': sensorOffsetY,
       'cameraOffsetZ': cameraOffsetZ,
+      'useTerrainAnalysis': useTerrainAnalysis,
       'goalX': '0.0',
       'goalY': '0.0',
     }.items()
@@ -120,5 +123,6 @@ def generate_launch_description():
     declare_checkTerrainConn,
     declare_realRobot,
     declare_useJoy,
+    declare_useTerrainAnalysis,
     waypoint_stack,
   ])
