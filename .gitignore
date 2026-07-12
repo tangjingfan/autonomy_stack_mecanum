@@ -16,12 +16,6 @@ __pycache__
 
 .vscode
 
-src/base_autonomy/vehicle_simulator/mesh/*
-
-!src/base_autonomy/vehicle_simulator/mesh/unity
-
-src/base_autonomy/vehicle_simulator/mesh/unity/*
-
-src/base_autonomy/vehicle_simulator/log/*
+bags
 
 !readme.txt
