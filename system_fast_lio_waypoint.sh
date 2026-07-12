@@ -14,4 +14,4 @@ if [ "${RVIZ_SOFTWARE_RENDERING:-false}" = "true" ]; then
   export LIBGL_ALWAYS_SOFTWARE=1
 fi
 
-ros2 run rviz2 rviz2 -d src/base_autonomy/vehicle_simulator/rviz/vehicle_simulator.rviz
+ros2 run rviz2 rviz2 -d src/base_autonomy/local_planner/rviz/real_robot.rviz
