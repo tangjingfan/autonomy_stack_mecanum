@@ -31,8 +31,6 @@ colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release \
   sensor_scan_generation visualization_tools waypoint_rviz_plugin teleop_rviz_plugin
 ```
 
-If you also need simulation tools, install `ros-humble-cv-bridge` first, then build `vehicle_simulator`.
-
 ## Run With FAST_LIO_GPU
 
 Start FAST_LIO_GPU first. Then run:
@@ -80,12 +78,15 @@ ros2 launch local_planner fast_lio_waypoint.launch.py realRobot:=true
 - `visualization_tools`: RViz visualization helpers
 - `waypoint_rviz_plugin`: RViz waypoint tool
 - `teleop_rviz_plugin`: RViz control panel
-- `waypoint_example`: optional example waypoint sender
 
 ## Removed From This Branch
 
 - `src/slam`
 - `src/route_planner`
 - `src/exploration_planner`
+- `vehicle_simulator` and the Unity simulation
+- `ros_tcp_endpoint` (Unity TCP bridge)
+- `waypoint_example` (preset waypoint sender)
+- `teleop_joy_controller` (mecanum serial base teleop)
 - route/exploration startup scripts and desktop launchers
 - route planner goalpoint RViz plugin
