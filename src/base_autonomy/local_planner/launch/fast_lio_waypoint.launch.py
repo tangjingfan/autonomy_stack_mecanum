@@ -20,6 +20,7 @@ def generate_launch_description():
   realRobot = LaunchConfiguration('realRobot')
   useJoy = LaunchConfiguration('useJoy')
   useTerrainAnalysis = LaunchConfiguration('useTerrainAnalysis')
+  fastLioBodyFrame = LaunchConfiguration('fastLioBodyFrame')
 
   declare_world_name = DeclareLaunchArgument('world_name', default_value='real_world', description='')
   declare_fast_lio_odom_topic = DeclareLaunchArgument('fast_lio_odom_topic', default_value='/Odometry', description='')
@@ -31,6 +32,7 @@ def generate_launch_description():
   declare_realRobot = DeclareLaunchArgument('realRobot', default_value='false', description='')
   declare_useJoy = DeclareLaunchArgument('useJoy', default_value='false', description='')
   declare_useTerrainAnalysis = DeclareLaunchArgument('useTerrainAnalysis', default_value='false', description='')
+  declare_fastLioBodyFrame = DeclareLaunchArgument('fastLioBodyFrame', default_value='body', description='FAST-LIO body frame that coincides with the stack sensor frame')
 
   start_local_planner = IncludeLaunchDescription(
     FrontendLaunchDescriptionSource(os.path.join(
@@ -103,8 +105,26 @@ def generate_launch_description():
     }]
   )
 
+  # FAST-LIO publishes map -> camera_init -> body, while the autonomy stack keeps
+  # sensor -> vehicle / camera. The stack's sensor frame coincides with FAST-LIO's
+  # body frame (both are the pose reported on /Odometry), so this identity link
+  # joins the two TF trees and lets vehicle-frame topics (e.g. /free_paths, /path)
+  # be displayed and planned against.
+  start_body_to_sensor_tf = Node(
+    package='tf2_ros',
+    executable='static_transform_publisher',
+    name='fastLioBodyToSensorTransPublisher',
+    output='screen',
+    arguments=[
+      '--x', '0', '--y', '0', '--z', '0',
+      '--roll', '0', '--pitch', '0', '--yaw', '0',
+      '--frame-id', fastLioBodyFrame, '--child-frame-id', 'sensor',
+    ],
+  )
+
   waypoint_stack = GroupAction([
     start_fast_lio_topic_bridge,
+    start_body_to_sensor_tf,
     start_local_planner,
     start_terrain_analysis,
     start_terrain_analysis_ext,
@@ -124,5 +144,6 @@ def generate_launch_description():
     declare_realRobot,
     declare_useJoy,
     declare_useTerrainAnalysis,
+    declare_fastLioBodyFrame,
     waypoint_stack,
   ])
