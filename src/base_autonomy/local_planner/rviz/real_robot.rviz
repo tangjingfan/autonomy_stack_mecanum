@@ -5,7 +5,7 @@ Panels:
     Property Tree Widget:
       Expanded: ~
       Splitter Ratio: 0.5
-    Tree Height: 720
+    Tree Height: 391
   - Class: rviz_common/Selection
     Name: Selection
   - Class: rviz_common/Tool Properties
@@ -21,7 +21,7 @@ Panels:
     Experimental: false
     Name: Time
     SyncMode: 0
-    SyncSource: RegScan
+    SyncSource: TerrainMap
   - Class: teleop_rviz_plugin/TeleopPanel
     Name: TeleopPanel
 Visualization Manager:
@@ -55,6 +55,8 @@ Visualization Manager:
       Show Arrows: true
       Show Axes: true
       Show Names: true
+      Tree:
+        {}
       Update Interval: 0
       Value: false
     - Class: rviz_default_plugins/Axes
@@ -67,8 +69,8 @@ Visualization Manager:
     - Alpha: 1
       Autocompute Intensity Bounds: true
       Autocompute Value Bounds:
-        Max Value: 5
-        Min Value: -1
+        Max Value: 10.08108139038086
+        Min Value: -1.0092880725860596
         Value: true
       Axis: Z
       Channel Name: intensity
@@ -226,7 +228,7 @@ Visualization Manager:
         Filter size: 100
         History Policy: Keep Last
         Reliability Policy: Reliable
-        Value: /path
+        Value: /local_planner/path
       Value: true
     - Alpha: 1
       Autocompute Intensity Bounds: true
@@ -258,7 +260,7 @@ Visualization Manager:
         Filter size: 100
         History Policy: Keep Last
         Reliability Policy: Reliable
-        Value: /free_paths
+        Value: /local_planner/free_paths
       Use Fixed Frame: true
       Use rainbow: true
       Value: true
@@ -285,6 +287,7 @@ Visualization Manager:
       Topic:
         Depth: 5
         Durability Policy: Volatile
+        Filter size: 10
         History Policy: Keep Last
         Reliability Policy: Reliable
         Value: /navigation_boundary
@@ -400,27 +403,28 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 1.0
+      Pitch: 1.0099999904632568
       Target Frame: vehicle
       Value: Orbit (rviz)
-      Yaw: 3.1415927410125732
+      Yaw: 3.906595468521118
     Saved: ~
 Window Geometry:
   Displays:
-    collapsed: false
-  Height: 1010
-  Hide Left Dock: false
+    collapsed: true
+  Height: 836
+  Hide Left Dock: true
   Hide Right Dock: false
+  QMainWindow State: 000000ff00000000fd000000020000000000000379000002e8fc0200000004fb000000100044006900730070006c006100790073000000003e000001c5000000ca00fffffffb0000001200530065006c0065006300740069006f006e00000002090000005e0000005c00fffffffb0000001e0054006f006f006c002000500072006f0070006500720074006900650073000000026d0000006c0000005c00fffffffb0000000800540069006d006500000002df000000470000003a00ffffff0000000100000100000002e8fc0200000002fb0000000a00560069006500770073010000003e000001b8000000a600fffffffb0000001600540065006c0065006f007000500061006e0065006c01000001fc0000012a0000004800ffffff00000454000002e800000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   Selection:
-    collapsed: false
+    collapsed: true
   TeleopPanel:
     collapsed: false
   Time:
-    collapsed: false
+    collapsed: true
   Tool Properties:
-    collapsed: false
+    collapsed: true
   Views:
     collapsed: false
-  Width: 1837
-  X: 54
+  Width: 1370
+  X: 70
   Y: 27

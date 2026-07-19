@@ -25,7 +25,7 @@ ros2 bag record -o "$BAG_DIR" \
   /registered_scan \
   /terrain_map \
   /way_point \
-  /free_paths \
-  /path \
+  /local_planner/free_paths \
+  /local_planner/path \
   /tf \
   /tf_static

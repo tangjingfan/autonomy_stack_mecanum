@@ -108,7 +108,8 @@ def generate_launch_description():
   # FAST-LIO publishes map -> camera_init -> body, while the autonomy stack keeps
   # sensor -> vehicle / camera. The stack's sensor frame coincides with FAST-LIO's
   # body frame (both are the pose reported on /Odometry), so this identity link
-  # joins the two TF trees and lets vehicle-frame topics (e.g. /free_paths, /path)
+  # joins the two TF trees and lets vehicle-frame topics (e.g.
+  # /local_planner/free_paths and /local_planner/path)
   # be displayed and planned against.
   start_body_to_sensor_tf = Node(
     package='tf2_ros',

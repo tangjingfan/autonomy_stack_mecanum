@@ -642,11 +642,11 @@ int main(int argc, char** argv)
   auto pubSurBlock = nh->create_publisher<std_msgs::msg::Int8> ("/surrounding_block", 5);
   std_msgs::msg::Int8 block;
 
-  auto pubPath = nh->create_publisher<nav_msgs::msg::Path>("/path", 5);
+  auto pubPath = nh->create_publisher<nav_msgs::msg::Path>("/local_planner/path", 5);
   nav_msgs::msg::Path path;
 
   #if PLOTPATHSET == 1
-  auto pubFreePaths = nh->create_publisher<sensor_msgs::msg::PointCloud2>("/free_paths", 2);
+  auto pubFreePaths = nh->create_publisher<sensor_msgs::msg::PointCloud2>("/local_planner/free_paths", 2);
   #endif
 
   //auto pubLaserCloud = nh->create_publisher<sensor_msgs::msg::PointCloud2> ("/stacked_scans", 2);
