@@ -45,7 +45,7 @@
     <param name="maxSpeed" value="$(var maxSpeed)" />
     <param name="dirWeight" value="0.02" />
     <param name="dirThre" value="60.0" />
-    <param name="dirToVehicle" value="false" />
+    <param name="dirToVehicle" value="true" />
     <param name="pathScale" value="0.875" />
     <param name="minPathScale" value="0.675" />
     <param name="pathScaleStep" value="0.1" />
